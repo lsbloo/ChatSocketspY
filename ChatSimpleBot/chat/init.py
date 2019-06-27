@@ -11,9 +11,11 @@ def createClients(name_client):
     list_clients.append(client)
     return client
 
+
 def senderMessenger(result,msg):
     receiver = result['client01']
     sender = result['client02']
+    print(sender.tcp.__str__())
     host=''
     process=''
     receiver_data = receiver.tcp.__str__().split(",")
@@ -26,7 +28,8 @@ def senderMessenger(result,msg):
 
     result = (host,int(process))
 
-    sender.senderMsgToReceiver(msg,result)
+    receiver.senderMsgToReceiver(msg,result)
+
 
 
 
@@ -36,7 +39,7 @@ client02_osvaldo2 = createClients('osvaldo2')
 
 result = {"client01": client01_osvaldo , "client02" : client02_osvaldo2}
 
-msg=b'mensagem enviada!'
+msg=b'fdp!'
 senderMessenger(result,msg)
 
 

@@ -21,6 +21,7 @@ class Server(object):
 
 
 list_clients=[]
+
 def start(amount):
     a = Server(4002,'127.0.0.1')
     print(a.__str__())
@@ -31,9 +32,13 @@ def start(amount):
         print("Connect", client)
         list_clients.append(client)
         cont=cont+1
-
+        show_msg(c,client)
     return list_clients
 
+
+def show_msg(c,client):
+    msg = c.recv(1024)
+    print("Existe uma mensagem: " , msg , ":" , "Cliente : " , client)
 
 start(1000)
 

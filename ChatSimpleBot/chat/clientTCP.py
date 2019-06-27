@@ -24,8 +24,11 @@ class Client(threading.Thread):
         print("msg sender!")
 
     def senderMsgToReceiver(self,msg,receiver):
+        print(msg , "  :  " , receiver)
         self.tcp.sendto(msg,receiver)
         print("msg sender to !")
+
+
 
 
 
