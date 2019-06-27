@@ -15,32 +15,42 @@ def createClients(name_client):
 def senderMessenger(result,msg):
     receiver = result['client01']
     sender = result['client02']
-    print(sender.tcp.__str__())
-    host=''
-    process=''
-    receiver_data = receiver.tcp.__str__().split(",")
+    return receiver.senderMsgToReceiver(msg,getDataTCP(receiver),getDataTCP(sender))
+
+
+
+def getDataTCP(client):
+    host = ''
+    process = ''
+    receiver_data = client.tcp.__str__().split(",")
     for i in receiver_data[4]:
         if i.isdigit() or i == ".":
-            host +=i
+            host += i
     for j in receiver_data[5]:
         if j.isdigit():
-            process+=j
+            process += j
 
-    result = (host,int(process))
-
-    receiver.senderMsgToReceiver(msg,result)
-
+    result = (host, int(process))
+    return result
 
 
+def generateClient():
+    client01 = createClients('osvaldo')
+    client02 = createClients('maria')
+    result = {"client01": client01 , "client02" : client02}
+    return result
 
 
-client01_osvaldo = createClients('osvaldo')
-client02_osvaldo2 = createClients('osvaldo2')
+print("Digite [1] para enviar mensagem de um cliente para outro. ")
+option = int(input())
+if option == 1:
+    result = generateClient()
+    msg = str(input("Digite a mensagem que deseja enviar! > "))
+    result_msg = str.encode(msg)
 
-result = {"client01": client01_osvaldo , "client02" : client02_osvaldo2}
+    print(senderMessenger(result,result_msg))
 
-msg=b'fdp!'
-senderMessenger(result,msg)
+
 
 
 

@@ -23,11 +23,10 @@ class Client(threading.Thread):
         self.tcp.send(msg)
         print("msg sender!")
 
-    def senderMsgToReceiver(self,msg,receiver):
-        print(msg , "  :  " , receiver)
+    def senderMsgToReceiver(self,msg,receiver,sender):
         self.tcp.sendto(msg,receiver)
-        print("msg sender to !")
-
+        exit = "Mensagem Enviada de " , sender ,  " Para: " , receiver
+        return exit
 
 
 

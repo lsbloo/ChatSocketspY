@@ -38,7 +38,9 @@ def start(amount):
 
 def show_msg(c,client):
     msg = c.recv(1024)
-    print("Existe uma mensagem: " , msg , ":" , "Cliente : " , client)
+    qq = b''
+    if msg != qq:
+        print("Existe uma mensagem: " , msg , ":" , "Cliente : " , client)
 
 start(1000)
 
