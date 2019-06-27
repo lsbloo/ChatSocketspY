@@ -1,15 +1,17 @@
 import socket
+import threading
 
-class Client(object):
+
+
+class Client(threading.Thread):
 
     def __init__(self,host,port,name):
         self.port=port
         self.host=host
         self.tcp = self.createClient()
-        self.name = name
+        self.paramx = name
 
-    def __str__(self):
-        return self.name
+
 
     def createClient(self):
         client_dest = (self.host,self.port)
@@ -20,6 +22,11 @@ class Client(object):
     def senderMSG(self,msg):
         self.tcp.send(msg)
         print("msg sender!")
+
+    def senderMsgToReceiver(self,msg,receiver):
+        self.tcp.sendto(msg,receiver)
+        print("msg sender to !")
+
 
 
 

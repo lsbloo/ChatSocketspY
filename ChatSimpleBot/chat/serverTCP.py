@@ -20,17 +20,23 @@ class Server(object):
 
 
 
-a = Server(4002,'127.0.0.1')
-print(a.__str__())
-tcp = a.createConnect(1)
-while True:
-    c, client = tcp.accept()
-    print("Connect", client.__str__())
-    while True:
-        msg = c.recv(1024)
-        if not msg: break
-        print(client, msg)
-    
+list_clients=[]
+def start(amount):
+    a = Server(4002,'127.0.0.1')
+    print(a.__str__())
+    tcp = a.createConnect(1)
+    cont = 0
+    while cont < amount:
+        c, client = tcp.accept()
+        print("Connect", client)
+        list_clients.append(client)
+        cont=cont+1
+
+    return list_clients
+
+
+start(1000)
+
 
 
 
